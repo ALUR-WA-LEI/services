@@ -2,6 +2,7 @@ package org.sola.admin.opentenure.services.ejbs.claim.businesslogic;
 
 import java.util.List;
 import javax.ejb.Local;
+import org.sola.admin.opentenure.services.ejbs.claim.entities.AdministrativeBoundary;
 import org.sola.admin.opentenure.services.ejbs.claim.entities.ClaimStatus;
 import org.sola.admin.opentenure.services.ejbs.claim.entities.FieldConstraintType;
 import org.sola.admin.opentenure.services.ejbs.claim.entities.FieldType;
@@ -22,4 +23,5 @@ public interface ClaimAdminEJBLocal extends AbstractEJBLocal {
     boolean checkFormTemplateHasPayload(String formName);
     FormTemplate saveFormTemplate(FormTemplate form);
     boolean makeFormDefault(String formName);
+    List<AdministrativeBoundary> getAdministrativeBoundaries(String statusCode, String typeCode);
 }

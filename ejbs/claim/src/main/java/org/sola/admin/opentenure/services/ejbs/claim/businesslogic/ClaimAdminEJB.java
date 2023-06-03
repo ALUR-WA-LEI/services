@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import org.sola.admin.opentenure.services.ejbs.claim.entities.AdministrativeBoundary;
 import org.sola.common.RolesConstants;
 import org.sola.admin.opentenure.services.ejbs.claim.entities.ClaimStatus;
 import org.sola.admin.opentenure.services.ejbs.claim.entities.FieldConstraint;
@@ -22,6 +23,7 @@ import org.sola.services.common.ejbs.AbstractEJB;
 import org.sola.services.common.repository.CommonSqlProvider;
 import org.sola.admin.services.ejb.system.businesslogic.SystemAdminEJBLocal;
 import org.sola.admin.services.ejbs.admin.businesslogic.AdministratorEJBLocal;
+import org.sola.common.StringUtility;
 import org.sola.services.common.EntityAction;
 
 /**
@@ -198,6 +200,18 @@ public class ClaimAdminEJB extends AbstractEJB implements ClaimAdminEJBLocal {
             }
         }
         return getRepository().saveEntity(form);
+    }
+    
+    @Override
+    public List<AdministrativeBoundary> getAdministrativeBoundaries(String statusCode, String typeCode) {
+        statusCode = StringUtility.empty(statusCode);
+        typeCode = StringUtility.empty(typeCode);
+        
+        Map params = new HashMap<String, Object>();
+        params.put(CommonSqlProvider.PARAM_QUERY, AdministrativeBoundary.QUERY_BY_TYPE_AND_STATUS);
+        params.put(AdministrativeBoundary.PARAM_STATUS, statusCode);
+        params.put(AdministrativeBoundary.PARAM_TYPE_CODE, typeCode);
+        return getRepository().getEntityList(AdministrativeBoundary.class, params);
     }
     
     @Override

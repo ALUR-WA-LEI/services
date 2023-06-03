@@ -4,11 +4,11 @@
     <parent>
         <artifactId>sola-admin-ejbs</artifactId>
         <groupId>org.fao.sola.admin.services</groupId>
-        <version>1504a</version>
+        <version>2305a</version>
     </parent>
     <groupId>org.fao.sola.admin.services.ejbs</groupId>
     <artifactId>sola-admin-system</artifactId>
-    <version>1504a</version>
+    <version>2305a</version>
     <packaging>ejb</packaging>
     <name>EJB Admin System</name>
     <repositories>
